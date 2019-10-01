@@ -32,7 +32,7 @@ function kadai_3(age, callback) {
 kadai_3(21, Judgment);
 
 function Judgment(message) {
-    if (typeof message !== 'number'){
+    if (typeof message !== 'number') {
         alert('数値が入力されていません');
     }   else if (message >= 20) {
         alert('値は20以上です');
