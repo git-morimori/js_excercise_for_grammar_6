@@ -9,6 +9,7 @@
 
 // ここに「関数スコープ」の説明を記述する
 // varを使って変数宣言をすることで、ブロック内で変数宣言した変数へ外部からでもアクセスできる範囲。
+// 関数の引数や関数の中で使用している変数に関してはvarを使用してもアクセスできない。
 
 // 課題3: 以下の条件を満たす高階関数を実装してください
 //   - 関数名: kadai_3
@@ -26,21 +27,26 @@
 //           - 第1引数で受けとった `message` の内容を `alert` を使ってアラートダイアログに表示する
 //   - kadai_3関数を実装した直後に「kadai_3(数値, コールバック関数)」を呼び出して、アラートダイアログのメッセージ内容が意図通りであることを確認する
 function kadai_3(age, callback) {
-    callback(age);
+    let message;
+    if (typeof age !== 'number') {
+        message ='数値が入力されていません';
+    }   else if (age >= 20) {
+        message ='値は20以上です';
+    }   else if (age >= 10) {
+        message ='値は10以上20未満です';
+    }   else {
+        message ='値は10未満です';
+    }
+    callback(message)
 }
 
-kadai_3(21, Judgment);
+kadai_3('a', notice);
+kadai_3(20, notice);
+kadai_3(10, notice);
+kadai_3(9, notice);
 
-function Judgment(message) {
-    if (typeof message !== 'number') {
-        alert('数値が入力されていません');
-    }   else if (message >= 20) {
-        alert('値は20以上です');
-    }   else if (message >= 10) {
-        alert('値は10以上20未満です');
-    }   else {
-        alert('値は10未満です');
-    }
+function notice(message) {
+    alert(message);
 }
 // 課題4: 以下の条件を満たす即時関数を作る
 //   - 2つの引数を受け取る
